@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>多语言单词背诵系统</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- 头部导航 -->
+      <header class="header">
+        <h1><i class="fas fa-book"></i> 多语言单词背诵系统</h1>
+        <div class="header-controls">
+          <button id="importBtn" class="btn btn-primary">
+            <i class="fas fa-upload"></i> 导入数据
+          </button>
+          <button id="exportBtn" class="btn btn-secondary">
+            <i class="fas fa-download"></i> 导出数据
+          </button>
+          <input
+            type="file"
+            id="fileInput"
+            accept=".json,.csv,.txt"
+            style="display: none"
+          />
+        </div>
+      </header>
+
+      <!-- 主要内容区域 -->
+      <main class="main-content">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+          <div class="word-list-section">
+            <h3><i class="fas fa-list"></i> 单词列表</h3>
+            <div class="search-box">
+              <input type="text" id="searchInput" placeholder="搜索单词..." />
+              <i class="fas fa-search"></i>
+            </div>
+            <div class="filter-controls">
+              <select id="languageFilter">
+                <option value="">所有语言</option>
+              </select>
+              <select id="difficultyFilter">
+                <option value="">所有难度</option>
+                <option value="easy">简单</option>
+                <option value="medium">中等</option>
+                <option value="hard">困难</option>
+              </select>
+            </div>
+            <div class="word-count">
+              <span id="wordCount">0 个单词</span>
+            </div>
+            <div id="wordList" class="word-list"></div>
+          </div>
+        </aside>
+
+        <!-- 主内容区 -->
+        <div class="content-area">
+          <!-- 添加/编辑单词区域 -->
+          <div class="word-form-section">
+            <h3><i class="fas fa-plus"></i> 添加新单词</h3>
+            <form id="wordForm" class="word-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="word">单词/短语</label>
+                  <input type="text" id="word" required />
+                </div>
+                <div class="form-group">
+                  <label for="translation">翻译</label>
+                  <input type="text" id="translation" required />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="language">语言</label>
+                  <select id="language" required>
+                    <option value="英语">英语</option>
+                    <option value="日语">日语</option>
+                    <option value="韩语">韩语</option>
+                    <option value="法语">法语</option>
+                    <option value="德语">德语</option>
+                    <option value="西班牙语">西班牙语</option>
+                    <option value="意大利语">意大利语</option>
+                    <option value="俄语">俄语</option>
+                    <option value="阿拉伯语">阿拉伯语</option>
+                    <option value="其他">其他</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="difficulty">难度</label>
+                  <select id="difficulty" required>
+                    <option value="easy">简单</option>
+                    <option value="medium">中等</option>
+                    <option value="hard">困难</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="example">例句 (可选)</label>
+                <textarea id="example" rows="2"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="notes">备注 (可选)</label>
+                <textarea id="notes" rows="2"></textarea>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                  <i class="fas fa-save"></i> 保存单词
+                </button>
+                <button type="button" id="clearForm" class="btn btn-secondary">
+                  <i class="fas fa-eraser"></i> 清空
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- 背诵模式区域 -->
+          <div class="study-section">
+            <h3><i class="fas fa-graduation-cap"></i> 背诵模式</h3>
+            <div class="study-controls">
+              <button id="flashcardBtn" class="btn btn-primary">
+                <i class="fas fa-cards-blank"></i> 闪卡模式
+              </button>
+              <button id="quizBtn" class="btn btn-primary">
+                <i class="fas fa-question-circle"></i> 测试模式
+              </button>
+              <button id="typingBtn" class="btn btn-primary">
+                <i class="fas fa-keyboard"></i> 打字练习
+              </button>
+            </div>
+
+            <!-- 闪卡显示区域 -->
+            <div
+              id="flashcardArea"
+              class="flashcard-area"
+              style="display: none"
+            >
+              <div class="flashcard" id="flashcard">
+                <div class="card-front">
+                  <h2 id="cardWord"></h2>
+                  <p id="cardLanguage"></p>
+                </div>
+                <div class="card-back" style="display: none">
+                  <h2 id="cardTranslation"></h2>
+                  <p id="cardExample"></p>
+                  <p id="cardNotes"></p>
+                </div>
+              </div>
+              <div class="card-controls">
+                <button id="flipCard" class="btn btn-secondary">
+                  <i class="fas fa-sync"></i> 翻转
+                </button>
+                <button id="nextCard" class="btn btn-primary">
+                  <i class="fas fa-arrow-right"></i> 下一个
+                </button>
+                <button id="closeFlashcard" class="btn btn-danger">
+                  <i class="fas fa-times"></i> 关闭
+                </button>
+              </div>
+            </div>
+
+            <!-- 测试模式显示区域 -->
+            <div id="quizArea" class="quiz-area" style="display: none">
+              <div class="quiz-question">
+                <h3 id="quizQuestion"></h3>
+                <div class="quiz-options" id="quizOptions"></div>
+              </div>
+              <div class="quiz-controls">
+                <button id="nextQuiz" class="btn btn-primary">
+                  <i class="fas fa-arrow-right"></i> 下一题
+                </button>
+                <button id="closeQuiz" class="btn btn-danger">
+                  <i class="fas fa-times"></i> 关闭
+                </button>
+              </div>
+              <div class="quiz-score">
+                <span id="quizScore">得分: 0/0</span>
+              </div>
+            </div>
+
+            <!-- 打字练习显示区域 -->
+            <div id="typingArea" class="typing-area" style="display: none">
+              <div class="typing-question">
+                <h3 id="typingQuestion"></h3>
+                <input
+                  type="text"
+                  id="typingInput"
+                  placeholder="请输入翻译..."
+                />
+              </div>
+              <div class="typing-controls">
+                <button id="checkTyping" class="btn btn-primary">
+                  <i class="fas fa-check"></i> 检查
+                </button>
+                <button id="nextTyping" class="btn btn-primary">
+                  <i class="fas fa-arrow-right"></i> 下一题
+                </button>
+                <button id="closeTyping" class="btn btn-danger">
+                  <i class="fas fa-times"></i> 关闭
+                </button>
+              </div>
+              <div class="typing-score">
+                <span id="typingScore">得分: 0/0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- 消息提示 -->
+    <div id="message" class="message"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

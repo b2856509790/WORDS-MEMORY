@@ -1,0 +1,122 @@
+[
+  {
+    "word": "hello",
+    "translation": "你好",
+    "language": "英语",
+    "difficulty": "easy",
+    "example": "Hello, how are you?",
+    "notes": "最常用的问候语"
+  },
+  {
+    "word": "beautiful",
+    "translation": "美丽的",
+    "language": "英语",
+    "difficulty": "medium",
+    "example": "She is a beautiful girl.",
+    "notes": "形容词，用来形容人或物的美丽"
+  },
+  {
+    "word": "computer",
+    "translation": "电脑",
+    "language": "英语",
+    "difficulty": "easy",
+    "example": "I use my computer every day.",
+    "notes": "现代生活中必不可少的设备"
+  },
+  {
+    "word": "こんにちは",
+    "translation": "你好",
+    "language": "日语",
+    "difficulty": "easy",
+    "example": "こんにちは、元気ですか？",
+    "notes": "日语的日常问候语"
+  },
+  {
+    "word": "ありがとう",
+    "translation": "谢谢",
+    "language": "日语",
+    "difficulty": "easy",
+    "example": "ありがとうございます。",
+    "notes": "日语中表示感谢的词汇"
+  },
+  {
+    "word": "안녕하세요",
+    "translation": "你好",
+    "language": "韩语",
+    "difficulty": "easy",
+    "example": "안녕하세요, 어떻게 지내세요?",
+    "notes": "韩语的正式问候语"
+  },
+  {
+    "word": "bonjour",
+    "translation": "你好",
+    "language": "法语",
+    "difficulty": "easy",
+    "example": "Bonjour, comment allez-vous?",
+    "notes": "法语的日常问候语"
+  },
+  {
+    "word": "guten Tag",
+    "translation": "你好",
+    "language": "德语",
+    "difficulty": "medium",
+    "example": "Guten Tag, wie geht es Ihnen?",
+    "notes": "德语的正式问候语"
+  },
+  {
+    "word": "hola",
+    "translation": "你好",
+    "language": "西班牙语",
+    "difficulty": "easy",
+    "example": "Hola, ¿cómo estás?",
+    "notes": "西班牙语的日常问候语"
+  },
+  {
+    "word": "ciao",
+    "translation": "你好/再见",
+    "language": "意大利语",
+    "difficulty": "easy",
+    "example": "Ciao, come stai?",
+    "notes": "意大利语中既可以表示问候也可以表示告别"
+  },
+  {
+    "word": "привет",
+    "translation": "你好",
+    "language": "俄语",
+    "difficulty": "medium",
+    "example": "Привет, как дела?",
+    "notes": "俄语的非正式问候语"
+  },
+  {
+    "word": "مرحبا",
+    "translation": "你好",
+    "language": "阿拉伯语",
+    "difficulty": "hard",
+    "example": "مرحبا، كيف حالك؟",
+    "notes": "阿拉伯语的问候语"
+  },
+  {
+    "word": "apple",
+    "translation": "苹果",
+    "language": "英语",
+    "difficulty": "easy",
+    "example": "I eat an apple every day.",
+    "notes": "常见的水果"
+  },
+  {
+    "word": "book",
+    "translation": "书",
+    "language": "英语",
+    "difficulty": "easy",
+    "example": "This is a very interesting book.",
+    "notes": "学习的重要工具"
+  },
+  {
+    "word": "water",
+    "translation": "水",
+    "language": "英语",
+    "difficulty": "easy",
+    "example": "I need to drink more water.",
+    "notes": "生命必需的物质"
+  }
+]

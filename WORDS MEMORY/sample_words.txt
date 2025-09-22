@@ -1,0 +1,10 @@
+hello|你好|英语|easy|Hello, how are you?|最常用的问候语
+beautiful|美丽的|英语|medium|She is a beautiful girl.|形容词，用来形容人或物的美丽
+computer|电脑|英语|easy|I use my computer every day.|现代生活中必不可少的设备
+こんにちは|你好|日语|easy|こんにちは、元気ですか？|日语的日常问候语
+ありがとう|谢谢|日语|easy|ありがとうございます。|日语中表示感谢的词汇
+안녕하세요|你好|韩语|easy|안녕하세요, 어떻게 지내세요?|韩语的正式问候语
+bonjour|你好|法语|easy|Bonjour, comment allez-vous?|法语的日常问候语
+guten Tag|你好|德语|medium|Guten Tag, wie geht es Ihnen?|德语的正式问候语
+hola|你好|西班牙语|easy|Hola, ¿cómo estás?|西班牙语的日常问候语
+ciao|你好/再见|意大利语|easy|Ciao, come stai?|意大利语中既可以表示问候也可以表示告别

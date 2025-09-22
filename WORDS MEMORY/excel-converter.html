@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Excel单词文件转换器</title>
+    <link rel="stylesheet" href="converter-styles.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <!-- 头部导航 -->
+      <header class="header">
+        <h1><i class="fas fa-file-excel"></i> Excel单词文件转换器</h1>
+        <p class="subtitle">将Excel单词文件转换为单词背诵系统可导入的格式</p>
+      </header>
+
+      <!-- 主要内容区域 -->
+      <main class="main-content">
+        <!-- 文件上传区域 -->
+        <div class="upload-section">
+          <div class="upload-area" id="uploadArea">
+            <div class="upload-content">
+              <i class="fas fa-cloud-upload-alt"></i>
+              <h3>拖拽Excel文件到这里或点击选择文件</h3>
+              <p>支持 .xlsx, .xls, .csv 格式</p>
+              <input
+                type="file"
+                id="fileInput"
+                accept=".xlsx,.xls,.csv"
+                style="display: none"
+              />
+              <button
+                class="btn btn-primary"
+                onclick="document.getElementById('fileInput').click()"
+              >
+                <i class="fas fa-folder-open"></i> 选择文件
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 配置区域 -->
+        <div class="config-section" id="configSection" style="display: none">
+          <h3><i class="fas fa-cog"></i> 文件配置</h3>
+
+          <!-- 预览表格 -->
+          <div class="preview-section">
+            <h4>文件预览 (前5行)</h4>
+            <div class="table-container">
+              <table id="previewTable" class="preview-table">
+                <thead id="previewHeader"></thead>
+                <tbody id="previewBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 列映射配置 -->
+          <div class="mapping-section">
+            <h4>列映射配置</h4>
+            <p class="help-text">
+              请选择Excel中对应的列，未选择的列将使用默认值
+            </p>
+
+            <div class="mapping-grid">
+              <div class="mapping-item">
+                <label for="wordColumn">单词/短语列 *</label>
+                <select id="wordColumn" required>
+                  <option value="">请选择列</option>
+                </select>
+              </div>
+
+              <div class="mapping-item">
+                <label for="translationColumn">翻译列 *</label>
+                <select id="translationColumn" required>
+                  <option value="">请选择列</option>
+                </select>
+              </div>
+
+              <div class="mapping-item">
+                <label for="languageColumn">语言列</label>
+                <select id="languageColumn">
+                  <option value="">请选择列</option>
+                  <option value="default">使用默认值</option>
+                </select>
+                <input
+                  type="text"
+                  id="defaultLanguage"
+                  placeholder="默认语言"
+                  value="英语"
+                  style="display: none"
+                />
+              </div>
+
+              <div class="mapping-item">
+                <label for="difficultyColumn">难度列</label>
+                <select id="difficultyColumn">
+                  <option value="">请选择列</option>
+                  <option value="default">使用默认值</option>
+                </select>
+                <select id="defaultDifficulty" style="display: none">
+                  <option value="easy">简单</option>
+                  <option value="medium" selected>中等</option>
+                  <option value="hard">困难</option>
+                </select>
+              </div>
+
+              <div class="mapping-item">
+                <label for="exampleColumn">例句列</label>
+                <select id="exampleColumn">
+                  <option value="">请选择列</option>
+                  <option value="none">无例句</option>
+                </select>
+              </div>
+
+              <div class="mapping-item">
+                <label for="notesColumn">备注列</label>
+                <select id="notesColumn">
+                  <option value="">请选择列</option>
+                  <option value="none">无备注</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- 转换选项 -->
+          <div class="options-section">
+            <h4>转换选项</h4>
+            <div class="options-grid">
+              <div class="option-item">
+                <label for="outputFormat">输出格式</label>
+                <select id="outputFormat">
+                  <option value="json">JSON (推荐)</option>
+                  <option value="csv">CSV</option>
+                  <option value="txt">TXT</option>
+                </select>
+              </div>
+
+              <div class="option-item">
+                <label for="skipEmptyRows">跳过空行</label>
+                <input type="checkbox" id="skipEmptyRows" checked />
+              </div>
+
+              <div class="option-item">
+                <label for="trimWhitespace">去除空格</label>
+                <input type="checkbox" id="trimWhitespace" checked />
+              </div>
+            </div>
+          </div>
+
+          <!-- 操作按钮 -->
+          <div class="action-buttons">
+            <button id="convertBtn" class="btn btn-primary">
+              <i class="fas fa-magic"></i> 开始转换
+            </button>
+            <button id="resetBtn" class="btn btn-secondary">
+              <i class="fas fa-undo"></i> 重新选择文件
+            </button>
+          </div>
+        </div>
+
+        <!-- 结果区域 -->
+        <div class="result-section" id="resultSection" style="display: none">
+          <h3><i class="fas fa-check-circle"></i> 转换结果</h3>
+
+          <div class="result-info">
+            <div class="info-item">
+              <i class="fas fa-file-alt"></i>
+              <span
+                >成功转换 <strong id="convertedCount">0</strong> 个单词</span
+              >
+            </div>
+            <div class="info-item">
+              <i class="fas fa-download"></i>
+              <span>文件大小: <strong id="fileSize">0 KB</strong></span>
+            </div>
+          </div>
+
+          <div class="result-actions">
+            <button id="downloadBtn" class="btn btn-success">
+              <i class="fas fa-download"></i> 下载转换文件
+            </button>
+            <button id="copyBtn" class="btn btn-secondary">
+              <i class="fas fa-copy"></i> 复制到剪贴板
+            </button>
+            <button id="newConvertBtn" class="btn btn-primary">
+              <i class="fas fa-plus"></i> 转换新文件
+            </button>
+          </div>
+
+          <!-- 预览转换结果 -->
+          <div class="result-preview">
+            <h4>转换结果预览</h4>
+            <pre id="resultPreview" class="result-code"></pre>
+          </div>
+        </div>
+
+        <!-- 使用说明 -->
+        <div class="help-section">
+          <h3><i class="fas fa-question-circle"></i> 使用说明</h3>
+
+          <div class="help-content">
+            <div class="help-item">
+              <h4>支持的Excel格式</h4>
+              <ul>
+                <li><strong>.xlsx</strong> - Excel 2007+ 格式</li>
+                <li><strong>.xls</strong> - Excel 97-2003 格式</li>
+                <li><strong>.csv</strong> - 逗号分隔值格式</li>
+              </ul>
+            </div>
+
+            <div class="help-item">
+              <h4>Excel文件要求</h4>
+              <ul>
+                <li>第一行应为列标题（可选）</li>
+                <li>至少包含单词和翻译两列</li>
+                <li>数据从第二行开始</li>
+                <li>支持多语言混合</li>
+              </ul>
+            </div>
+
+            <div class="help-item">
+              <h4>列映射说明</h4>
+              <ul>
+                <li><strong>单词列</strong>：必选，包含要学习的单词或短语</li>
+                <li><strong>翻译列</strong>：必选，包含对应的翻译</li>
+                <li><strong>语言列</strong>：可选，可设置默认语言</li>
+                <li><strong>难度列</strong>：可选，可设置默认难度</li>
+                <li><strong>例句列</strong>：可选，包含使用例句</li>
+                <li><strong>备注列</strong>：可选，包含额外说明</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- 消息提示 -->
+    <div id="message" class="message"></div>
+
+    <script src="converter-script.js"></script>
+  </body>
+</html>
