@@ -1,56 +1,56 @@
-# 多语言单词背诵系统
+# Multi-Language Word Memory System
 
-一个功能完整的多语言单词背诵网站，支持多种语言学习、数据导入导出和多种背诵模式。
+A fully-featured multi-language word memorization website that supports multiple language learning, data import/export, and various memorization modes.
 
-## 功能特点
+## Features
 
-### 📚 单词管理
+### 📚 Word Management
 
-- 添加、编辑、删除单词
-- 支持多种语言（英语、日语、韩语、法语、德语、西班牙语、意大利语、俄语、阿拉伯语等）
-- 难度分级（简单、中等、困难）
-- 例句和备注支持
-- 实时搜索和过滤
+- Add, edit, and delete words
+- Support for multiple languages (English, Japanese, Korean, French, German, Spanish, Italian, Russian, Arabic, etc.)
+- Difficulty levels (Easy, Medium, Hard)
+- Example sentences and notes support
+- Real-time search and filtering
 
-### 📥 数据导入导出
+### 📥 Data Import/Export
 
-- 支持 JSON、CSV、TXT 格式导入
-- 一键导出所有数据
-- 示例数据文件提供
+- Import support for JSON, CSV, TXT formats
+- One-click export of all data
+- Sample data files provided
 
-### 🎯 多种背诵模式
+### 🎯 Multiple Memorization Modes
 
-- **闪卡模式**：翻转卡片学习
-- **测试模式**：选择题形式测试
-- **打字练习**：输入练习模式
+- **Flashcard Mode**: Flip cards to learn
+- **Test Mode**: Multiple choice testing
+- **Typing Practice**: Input practice mode
 
-### 💾 数据持久化
+### 💾 Data Persistence
 
-- 本地存储，数据不会丢失
-- 自动保存学习进度
+- Local storage, data won't be lost
+- Automatic save of learning progress
 
-## 使用方法
+## How to Use
 
-### 1. 打开网站
+### 1. Open the Website
 
-直接在浏览器中打开 `index.html` 文件即可使用。
+Simply open the `index.html` file in your browser to start using.
 
-### 2. 添加单词
+### 2. Add Words
 
-1. 在右侧表单中填写单词信息
-2. 选择语言和难度
-3. 可选填写例句和备注
-4. 点击"保存单词"
+1. Fill in word information in the form on the right
+2. Select language and difficulty
+3. Optionally fill in example sentences and notes
+4. Click "Save Word"
 
-### 3. 导入数据
+### 3. Import Data
 
-1. 点击"导入数据"按钮
-2. 选择支持的文件格式（JSON、CSV、TXT）
-3. 系统会自动解析并导入单词
+1. Click the "Import Data" button
+2. Select supported file format (JSON, CSV, TXT)
+3. The system will automatically parse and import words
 
-#### 支持的文件格式
+#### Supported File Formats
 
-**JSON 格式**：
+**JSON Format**:
 
 ```json
 [
@@ -65,87 +65,87 @@
 ]
 ```
 
-**CSV 格式**：
+**CSV Format**:
 
 ```csv
 word,translation,language,difficulty,example,notes
 hello,你好,英语,easy,"Hello, how are you?",最常用的问候语
 ```
 
-**TXT 格式**（用 | 分隔）：
+**TXT Format** (separated by |):
 
 ```
 hello|你好|英语|easy|Hello, how are you?|最常用的问候语
 ```
 
-### 4. 学习模式
+### 4. Learning Modes
 
-#### 闪卡模式
+#### Flashcard Mode
 
-- 点击"闪卡模式"开始
-- 点击"翻转"查看答案
-- 点击"下一个"继续学习
+- Click "Flashcard Mode" to start
+- Click "Flip" to see the answer
+- Click "Next" to continue learning
 
-#### 测试模式
+#### Test Mode
 
-- 点击"测试模式"开始
-- 选择正确答案
-- 系统会显示正确率
+- Click "Test Mode" to start
+- Select the correct answer
+- The system will show accuracy rate
 
-#### 打字练习
+#### Typing Practice
 
-- 点击"打字练习"开始
-- 根据提示输入答案
-- 按回车键或点击"检查"提交答案
+- Click "Typing Practice" to start
+- Type the answer based on the prompt
+- Press Enter or click "Check" to submit answer
 
-### 5. 搜索和过滤
+### 5. Search and Filter
 
-- 使用搜索框快速查找单词
-- 按语言筛选
-- 按难度筛选
+- Use the search box to quickly find words
+- Filter by language
+- Filter by difficulty
 
-## 示例数据
+## Sample Data
 
-项目包含三个示例数据文件：
+The project includes three sample data files:
 
-- `sample_words.json` - JSON 格式示例
-- `sample_words.csv` - CSV 格式示例
-- `sample_words.txt` - TXT 格式示例
+- `sample_words.json` - JSON format example
+- `sample_words.csv` - CSV format example
+- `sample_words.txt` - TXT format example
 
-您可以直接导入这些文件来测试系统功能。
+You can directly import these files to test the system functionality.
 
-## 技术特点
+## Technical Features
 
-- **纯前端实现**：无需服务器，直接在浏览器中运行
-- **响应式设计**：支持手机、平板、电脑等各种设备
-- **现代化 UI**：美观的渐变背景和卡片式设计
-- **数据安全**：所有数据存储在本地，隐私安全
+- **Pure Frontend Implementation**: No server required, runs directly in browser
+- **Responsive Design**: Supports mobile, tablet, desktop and other devices
+- **Modern UI**: Beautiful gradient background and card-based design
+- **Data Security**: All data stored locally, privacy secure
 
-## 浏览器兼容性
+## Browser Compatibility
 
 - Chrome 60+
 - Firefox 55+
 - Safari 12+
 - Edge 79+
 
-## 更新日志
+## Changelog
 
 ### v1.0.0
 
-- 初始版本发布
-- 支持多语言单词管理
-- 实现三种学习模式
-- 支持数据导入导出
-- 响应式设计
+- Initial version release
+- Multi-language word management support
+- Three learning modes implemented
+- Data import/export support
+- Responsive design
 
-## 许可证
+## License
 
-MIT License - 可自由使用和修改
+MIT License - Free to use and modify
 
-## 贡献
+## Contributing
 
-欢迎提交 Issue 和 Pull Request 来改进这个项目！
+Welcome to submit Issues and Pull Requests to improve this project!
 
 ---
 
-**开始您的多语言学习之旅吧！** 🌍📚
+**Start your multi-language learning journey!** 🌍📚
